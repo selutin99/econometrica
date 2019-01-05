@@ -1,5 +1,5 @@
 import core.checker as ch
-import core.base_functions as base
+import core.average_params as avg
 import math
 
 def mean_linear_deviation(data):
@@ -9,7 +9,7 @@ def mean_linear_deviation(data):
     :return: linear deviation
     """
     if(ch.check_list(data)==True):
-        mean = base.average(data)
+        mean = avg.average(data)
         n = len(data)
         d = 0
         for element in data:
@@ -23,7 +23,7 @@ def dispersion(data):
     :return: (sigma^2)
     """
     if (ch.check_list(data) == True):
-        mean = base.average(data)
+        mean = avg.average(data)
         n = len(data)
         d = 0
         for element in data:
