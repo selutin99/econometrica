@@ -6,8 +6,7 @@ def pair_regression(x, y):
     """Find pair regression equation
     :param x: list of dependent variable
     :param y: list of independent variable
-    :return: list with coefficients of regression 
-             and string with regression equation 
+    :return: dictionary with coefficients of regression 
     """
     if (ch.check_list(x) == True and ch.check_list(y) == True):
         if(ch.check_equality(x,y) == True):
@@ -21,7 +20,5 @@ def pair_regression(x, y):
             b = np.array([sum(y), xy])
 
             system = np.linalg.solve(a, b)
-            equation = "y = "+str(system[1])+" x + ("+str(system[0])+")"
             result = system.tolist()
-            result.append(equation)
-            return result
+            return {'a': result[0], 'b': result[1]}
