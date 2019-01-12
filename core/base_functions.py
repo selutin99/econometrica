@@ -1,4 +1,5 @@
 import core.checker as ch
+import math
 
 def range(data):
     """
@@ -27,6 +28,20 @@ def mode(data):
     if (ch.check_list(data) == True):
         most = max(list(map(data.count, data)))
         return list(set(filter(lambda x: data.count(x) == most, data)))
+
+def median(data):
+    """
+    Calculate median of data list
+    :param data: list of int or float values
+    :return: median
+    """
+    if (ch.check_list(data) == True):
+        data.sort()
+        print(data)
+        if(len(data)%2!=0):
+            return data[len(data)//2]
+        else:
+            return (data[(len(data)//2)-1]+data[len(data)//2])/2
 
 def frequency(data):
     """
