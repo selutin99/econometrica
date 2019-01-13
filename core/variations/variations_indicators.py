@@ -38,3 +38,21 @@ def standard_deviation(data):
     """
     if (ch.check_list(data) == True):
         return math.sqrt(dispersion(data))
+
+def SEM(data):
+    """
+    Calculate standard error of the mean
+    :param data: list of int or float values
+    :return: standard error of the mean
+    """
+    if (ch.check_list(data) == True):
+        return standard_deviation(data)/len(data)
+
+def confidence_interval(data):
+    """
+    Calculate confidence interval for mean
+    :param data: list of int or float values
+    :return: list with confidence interval
+    """
+    if (ch.check_list(data) == True):
+        return [avg.average(data)-(1.96*SEM(data)), avg.average(data)+(1.96*SEM(data))]
