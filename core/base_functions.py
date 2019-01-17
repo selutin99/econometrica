@@ -51,3 +51,17 @@ def frequency(data):
     """
     if (ch.check_list(data) == True):
         return [{x: data.count(x) for x in data}, len(data)]
+
+def quartile(data):
+    """
+    Find Q1 and Q3
+    :param data: list of int or float values
+    :return: dictionary with quartiles
+    """
+    if (ch.check_list(data) == True):
+        data.sort()
+        h = (len(data)+1)//4
+        q1 = data[h-1]
+        h = 3*(len(data) + 1) // 4
+        q3 = data[h-1]
+        return {'q1': q1, 'q3': q3}
