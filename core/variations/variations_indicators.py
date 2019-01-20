@@ -30,6 +30,20 @@ def dispersion(data):
             d += (element - mean)**2
         return d / n
 
+def unbiased_variance_estimate(data):
+    """
+    Calculate dispersion variance 
+    :param data: list of int or float values
+    :return: dict with variance estimate and sqrt of dispersion variance
+    """
+    if (ch.check_list(data) == True):
+        mean = avg.average(data)
+        n = len(data)
+        d = 0
+        for element in data:
+            d += (element - mean)**2
+        return {'S2': d/(n-1), 's': math.sqrt(d/(n-1))}
+
 def standard_deviation(data):
     """
     Calculate simple standard deviation

@@ -61,7 +61,13 @@ def quartile(data):
     if (ch.check_list(data) == True):
         data.sort()
         h = (len(data)+1)//4
-        q1 = data[h-1]
+        if (len(data) % 2 == 0):
+            q1 = (data[h-1]+data[h])/2
+        else:
+            q1 = data[h-1]
         h = 3*(len(data) + 1) // 4
-        q3 = data[h-1]
+        if (len(data) % 2 == 0):
+            q3 = (data[h - 1] + data[h]) / 2
+        else:
+            q3 = data[h-1]
         return {'q1': q1, 'q3': q3}
