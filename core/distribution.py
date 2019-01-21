@@ -1,18 +1,20 @@
+import numpy as np
+
 import core.checker as ch
 import core.average_params as avg
 import core.variations.variations_indicators as vars
 
-def moment_3(data):
+def moment(data, degree):
     """
-    Calculate central moment of the third order
+    Calculate central moments
     :param data: list of int or float values
     :return: value of central moment
     """
-    if (ch.check_list(data) == True):
+    if (ch.check_list(data) == True and ch.check_degree(degree) == True):
         mean = avg.average(data)
         M = 0
         for element in data:
-            M+=(element-mean)**3
+            M+=(element-mean)**degree
         return M/len(data)
 
 def asymmetry_coefficient(data):
@@ -22,4 +24,18 @@ def asymmetry_coefficient(data):
     :return: value of asymmetry coefficient
     """
     if (ch.check_list(data) == True):
-        return moment_3(data)/(vars.standard_deviation(data)**3)
+        return moment(data, degree=3)/(vars.standard_deviation(data)**3)
+
+def asymmetry_estimation(data):
+    """
+    Calculate value of assymetry estimation
+    :param data: list of int or float values
+    :return: value of assymetry estimation
+    """
+    if (ch.check_list(data) == True):
+        n = len(data)
+
+        numerator = 6*(n-2)
+        denominator = (n+1)*(n+3)
+
+        return np.sqrt(numerator/denominator)

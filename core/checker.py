@@ -13,6 +13,19 @@ def check_list(data):
     else:
         raise ValueError('Data is must be as list')
 
+def check_degree(value):
+    """
+    :param value: positive integer number
+    :return: true or error
+    """
+    if type(value) is int:
+        if(value>0):
+            return True
+        else:
+            raise ValueError('Degree must be positive')
+    else:
+        raise ValueError('Degree must be integer')
+
 def check_equality(list1, list2):
     """
     Function return True if 2 inputs 
