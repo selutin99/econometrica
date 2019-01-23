@@ -76,9 +76,10 @@ def quartile(data):
 
 def expected_value(x, p):
     """
-    Find Q1 and Q3
-    :param data: list of int or float values
-    :return: dictionary with quartiles
+    Find expected value of 2 datasets
+    :param x: list of int or float values
+    :param p: list of float values
+    :return: value of expected value
     """
     if (ch.check_list(x) == True and ch.check_list(p) == True):
         if(ch.check_probability(p) == True):
