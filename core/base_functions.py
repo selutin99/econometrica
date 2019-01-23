@@ -82,8 +82,9 @@ def expected_value(x, p):
     :return: value of expected value
     """
     if (ch.check_list(x) == True and ch.check_list(p) == True):
-        if(ch.check_probability(p) == True):
-            m = 0
-            for xi, pi in zip(x,p):
-                m += xi*pi
-            return m
+        if(ch.check_equality(x,p) == True):
+            if(ch.check_probability(p) == True):
+                m = 0
+                for xi, pi in zip(x,p):
+                    m += xi*pi
+                return m
