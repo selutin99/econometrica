@@ -39,3 +39,12 @@ def asymmetry_estimation(data):
         denominator = (n+1)*(n+3)
 
         return np.sqrt(numerator/denominator)
+
+def kurtosis(data):
+    """
+    Calculate rate of kurtosis
+    :param data: list of int or float values
+    :return: value of kurtosis
+    """
+    if (ch.check_list(data) == True):
+        return (moment(data, degree=4)/vars.standard_deviation(data)**4)-3

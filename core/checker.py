@@ -35,3 +35,13 @@ def check_equality(list1, list2):
         return True
     else:
         raise ValueError('Length of list must be equal')
+
+def check_probability(list):
+    """
+    Function return True if sum of list is 1
+    """
+    if (check_list(list) == True):
+        if(sum(list)==1 or sum(list)==1.0):
+            return True
+        else:
+            raise ValueError('Probability must be equal to 1')

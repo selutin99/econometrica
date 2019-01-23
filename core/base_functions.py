@@ -60,6 +60,8 @@ def quartile(data):
     """
     if (ch.check_list(data) == True):
         data.sort()
+        if(len(data)==2):
+            return {'q1': data[0], 'q3': data[1]}
         h = (len(data)+1)//4
         if (len(data) % 2 == 0):
             q1 = (data[h-1]+data[h])/2
@@ -71,3 +73,16 @@ def quartile(data):
         else:
             q3 = data[h-1]
         return {'q1': q1, 'q3': q3}
+
+def expected_value(x, p):
+    """
+    Find Q1 and Q3
+    :param data: list of int or float values
+    :return: dictionary with quartiles
+    """
+    if (ch.check_list(x) == True and ch.check_list(p) == True):
+        if(ch.check_probability(p) == True):
+            m = 0
+            for xi, pi in zip(x,p):
+                m += xi*pi
+            return m

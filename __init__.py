@@ -8,4 +8,7 @@ if __name__ == '__main__':
     y = [6, 6, 7, 7, 7, 8, 8, 9, 9, 10]
     z = [1,2,3,4,4,4,5,5,6,8]
 
-    print(dist.asymmetry_coefficient(z)/dist.asymmetry_estimation(z))
+    x = [1,2,3,4,5,6]
+    q = [0.2,0.1,0.4,0.1,0.1,0.1]
+
+    print(base.expected_value(x,q))
