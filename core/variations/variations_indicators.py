@@ -30,6 +30,14 @@ def dispersion(data):
             d += (element - mean)**2
         return d / n
 
+def sample_dispersion(data):
+    """
+    Calculate sample dispersion 
+    :param data: list of int or float values
+    :return: S^2
+    """
+    return dispersion(data)-(avg.average(data))**2
+
 def unbiased_variance_estimate(data):
     """
     Calculate dispersion variance 

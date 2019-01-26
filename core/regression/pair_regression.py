@@ -22,3 +22,4 @@ def pair_regression(x, y):
             system = np.linalg.solve(a, b)
             result = system.tolist()
             return {'a': result[0], 'b': result[1]}
+
