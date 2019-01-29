@@ -36,7 +36,12 @@ def sample_dispersion(data):
     :param data: list of int or float values
     :return: S^2
     """
-    return dispersion(data)-(avg.average(data))**2
+    if (ch.check_list(data) == True):
+        n = len(data)
+        d = 0
+        for element in data:
+            d+=element**2
+        return (d/n)-(avg.average(data)**2)
 
 def unbiased_variance_estimate(data):
     """
@@ -60,6 +65,15 @@ def standard_deviation(data):
     """
     if (ch.check_list(data) == True):
         return math.sqrt(dispersion(data))
+
+def sample_deviation(data):
+    """
+    Calculate sample deviation
+    :param data: list of int or float values
+    :return: sample deviation
+    """
+    if (ch.check_list(data) == True):
+        return math.sqrt(sample_dispersion(data))
 
 def SEM(data):
     """

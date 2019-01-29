@@ -1,10 +1,6 @@
-import core.regression.сorrelation as cor
-import core.variations.variations_indicators as vars
-import core.average_params as avg
-import core.base_functions as base
-import core.distribution as dist
-
 import core.regression.pair_regression as regr
+
+import core.variations.variations_indicators as vars
 
 if __name__ == '__main__':
     x = [10, 12, 15, 17, 18, 19, 19, 20, 20, 21]
@@ -14,4 +10,4 @@ if __name__ == '__main__':
     #x = [1,2,3,4,5,6]
     q = [0.2,0.1,0.4,0.1,0.1,0.1]
 
-    print(regr.pair_regression(x, y))
+    print(regr.closure_coefficient(x,y))
