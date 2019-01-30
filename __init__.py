@@ -1,4 +1,5 @@
 import core.regression.pair_regression as regr
+import core.regression.сorrelation as cor
 
 import core.variations.variations_indicators as vars
 
@@ -10,4 +11,4 @@ if __name__ == '__main__':
     #x = [1,2,3,4,5,6]
     q = [0.2,0.1,0.4,0.1,0.1,0.1]
 
-    print(regr.closure_coefficient(x,y))
+    print(cor.approximation_error(x,y))
