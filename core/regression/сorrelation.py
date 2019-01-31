@@ -38,6 +38,17 @@ def beta_coefficient(x, y):
         if(ch.check_equality(x, y) == True):
             return regr.pair_regression(x, y)['b'] * (vars.sample_deviation(x)/vars.sample_deviation(y))
 
+def determination_coefficient(x, y):
+    """
+    Finds determination coefficient
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value of determination coefficient
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            return beta_coefficient(x, y)**2
+
 def significance(x, y):
     """
     Finds significance of correlation coefficient

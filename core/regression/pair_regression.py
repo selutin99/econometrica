@@ -46,3 +46,34 @@ def closure_coefficient(x,y):
             numerator = avg.sample_average(x,y)-(avg.average(x)*avg.average(y))
             denumerator = vars.sample_deviation(x)*vars.sample_deviation(y)
             return numerator/denumerator
+
+def yx(x, y):
+    """Auxiliary function for approximation error
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: list of regression values
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if(ch.check_equality(x,y) == True):
+            yxl = []
+            a = pair_regression(x, y)['a']
+            b = pair_regression(x, y)['b']
+
+            for xi in x:
+                yxl.append(b*xi+a)
+            return yxl
+
+def approximation_error(x, y):
+    """Find approximation error
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value in percent of approximation error
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            yxl = yx(x, y)
+            a = 0
+            for yi, yxli in zip(y, yxl):
+                a += (np.fabs(yi-yxli))/yi
+            return 100*(a/len(y))
+
