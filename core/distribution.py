@@ -1,8 +1,8 @@
-import numpy as np
-
 import core.checker as ch
 import core.average_params as avg
 import core.variations.variations_indicators as vars
+
+import numpy as np
 
 def moment(data, degree):
     """
@@ -10,7 +10,7 @@ def moment(data, degree):
     :param data: list of int or float values
     :return: value of central moment
     """
-    if (ch.check_list(data) == True and ch.check_degree(degree) == True):
+    if (ch.check_list(data) == True and ch.check_number(degree) == True):
         mean = avg.average(data)
         M = 0
         for element in data:

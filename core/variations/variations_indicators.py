@@ -1,6 +1,7 @@
 import core.checker as ch
 import core.average_params as avg
-import math
+
+import numpy as np
 
 def mean_linear_deviation(data):
     """
@@ -13,7 +14,7 @@ def mean_linear_deviation(data):
         n = len(data)
         d = 0
         for element in data:
-            d += math.fabs(element-mean)
+            d += np.fabs(element-mean)
         return d/n
 
 def dispersion(data):
@@ -55,7 +56,7 @@ def unbiased_variance_estimate(data):
         d = 0
         for element in data:
             d += (element - mean)**2
-        return {'S2': d/(n-1), 's': math.sqrt(d/(n-1))}
+        return {'S2': d/(n-1), 's': np.sqrt(d/(n-1))}
 
 def standard_deviation(data):
     """
@@ -64,7 +65,7 @@ def standard_deviation(data):
     :return: standard deviation
     """
     if (ch.check_list(data) == True):
-        return math.sqrt(dispersion(data))
+        return np.sqrt(dispersion(data))
 
 def sample_deviation(data):
     """
@@ -73,7 +74,7 @@ def sample_deviation(data):
     :return: sample deviation
     """
     if (ch.check_list(data) == True):
-        return math.sqrt(sample_dispersion(data))
+        return np.sqrt(sample_dispersion(data))
 
 def SEM(data):
     """

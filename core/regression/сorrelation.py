@@ -4,7 +4,7 @@ import core.average_params as avg
 import core.regression.pair_regression as regr
 import core.variations.variations_indicators as vars
 
-import math
+import numpy as np
 
 def pearson_correltaion(x, y):
     """Finds the Pearson correlation coefficient.
@@ -25,7 +25,24 @@ def pearson_correltaion(x, y):
                 diffprod += xdiff * ydiff
                 xdiff2 += xdiff * xdiff
                 ydiff2 += ydiff * ydiff
-            return diffprod / math.sqrt(xdiff2 * ydiff2)
+            return diffprod / np.sqrt(xdiff2 * ydiff2)
+
+def tail_coefficient(x, y):
+    """
+    Find tail mismatch coefficient
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value of tail mismatch coefficient
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if(ch.check_equality(x,y) == True):
+            numerator = 0
+            denumerator = 0
+            yxl = regr.yx(x, y)
+            for yi, yxl in zip(y, yxl):
+                numerator += (yi-yxl)**2
+                denumerator += yxl**2
+            return numerator/denumerator
 
 def beta_coefficient(x, y):
     """
@@ -60,8 +77,8 @@ def significance(x, y):
         if(ch.check_equality(x, y) == True):
             b = beta_coefficient(x, y)
             n = len(x)
-            numerator = b*math.sqrt(n-2)
-            denumerator = math.sqrt(1-b*b)
+            numerator = b*np.sqrt(n-2)
+            denumerator = np.sqrt(1-b*b)
 
             return numerator/denumerator
 

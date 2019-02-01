@@ -1,5 +1,4 @@
 import core.checker as ch
-import math
 
 def range(data):
     """

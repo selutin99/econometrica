@@ -12,4 +12,4 @@ if __name__ == '__main__':
     #x = [1,2,3,4,5,6]
     q = [0.2,0.1,0.4,0.1,0.1,0.1]
 
-    print(regr.approximation_error(x, y))
+    print(regr.dispersion_error_equation(x, y, 1))
