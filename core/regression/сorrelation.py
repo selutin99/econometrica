@@ -1,7 +1,7 @@
 import core.checker as ch
 import core.average_params as avg
 
-import core.regression.pair_regression as regr
+import core.regression.pair_regression as regression
 import core.variations.variations_indicators as vars
 
 import numpy as np
@@ -38,7 +38,7 @@ def tail_coefficient(x, y):
         if(ch.check_equality(x,y) == True):
             numerator = 0
             denumerator = 0
-            yxl = regr.yx(x, y)
+            yxl = regression.yx(x, y)
             for yi, yxl in zip(y, yxl):
                 numerator += (yi-yxl)**2
                 denumerator += yxl**2
@@ -53,7 +53,7 @@ def beta_coefficient(x, y):
     """
     if (ch.check_list(x) == True and ch.check_list(y) == True):
         if(ch.check_equality(x, y) == True):
-            return regr.pair_regression(x, y)['b'] * (vars.sample_deviation(x)/vars.sample_deviation(y))
+            return regression.pair_regression(x, y)['b'] * (vars.sample_deviation(x)/vars.sample_deviation(y))
 
 def determination_coefficient(x, y):
     """
@@ -91,4 +91,18 @@ def elastic_coefficient(x, y):
     """
     if (ch.check_list(x) == True and ch.check_list(y) == True):
         if(ch.check_equality(x, y) == True):
-            return regr.pair_regression(x, y)['b']*(avg.average(x)/avg.average(y))
+            return regression.pair_regression(x, y)['b']*(avg.average(x)/avg.average(y))
+
+def fisher_criteria(x, y, m):
+    """
+    Value of fisher criteria
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :param m: the number of influencing factors in the trend model
+    :return: value of fisher criteria
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True and ch.check_number(m) == True):
+             numerator = determination_coefficient(x,y) * (len(x)-m-1)
+             denumerator = (1-determination_coefficient(x,y))*m
+             return numerator/denumerator
