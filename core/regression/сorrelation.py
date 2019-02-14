@@ -27,6 +27,25 @@ def pearson_correltaion(x, y):
                 ydiff2 += ydiff * ydiff
             return diffprod / np.sqrt(xdiff2 * ydiff2)
 
+def cheddock_scale(value):
+    """
+    Find Cheddock scale importance
+    :param value: value of correlation
+    :return: string value by Cheddock scale
+    """
+    if ch.check_probability_value(value):
+        if 0.0 <= value < 0.3:
+            return "Weak correlation"
+        if 0.3 <= value < 0.5:
+            return "Moderate correlation"
+        if 0.5 <= value < 0.7:
+            return "Noticeable correlation"
+        if 0.7 <= value < 0.9:
+            return "High correlation"
+        if 0.9 <= value <= 0.99:
+            return "Very high correlation"
+        return "Is it probability?"
+
 def tail_coefficient(x, y):
     """
     Find tail mismatch coefficient

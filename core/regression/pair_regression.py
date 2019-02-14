@@ -92,3 +92,29 @@ def dispersion_error_equation(x,y,m):
             for yi, yxl in zip(y, yxl):
                 numerator += (yi - yxl) ** 2
             return numerator/(len(y)-m-1)
+
+def durbin_watson(x, y):
+    """
+    Find value for Durbin-Watrson criteria
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value of Durbin-Watrson criteria
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            yx_list = yx(x, y)
+            e = []
+            for yi, yxi in zip(y, yx_list):
+                e.append(yi-yxi)
+            i = 0
+            e_ei = []
+            e_2 = []
+            for ei in e:
+                e_2.append(ei**2)
+                if i == 0:
+                    i += 1
+                    continue
+                else:
+                    e_ei.append((e[i]-e[i-1])**2)
+                i += 1
+            return sum(e_ei)/sum(e_2)

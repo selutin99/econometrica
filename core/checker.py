@@ -13,6 +13,18 @@ def check_list(data):
     else:
         raise ValueError('Data is must be as list')
 
+def check_probability_value(value):
+    """
+    Check value of probability
+    """
+    if type(value) is float:
+        if 0.0 <= value <= 1.0:
+            return True
+        else:
+            raise ValueError('Probability must be between 0 and 1')
+    else:
+        raise ValueError('Probability must be float number')
+
 def check_number(value):
     """
     :param value: positive integer number
