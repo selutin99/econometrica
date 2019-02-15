@@ -1,7 +1,7 @@
 import core.regression.сorrelation as cor
 import core.regression.pair_regression as regr
 
-import combinatorics.base_functions as combo
+import core.range as rn
 
 if __name__ == '__main__':
     x = [10, 12, 15, 17, 18, 19, 19, 20, 20, 21]
@@ -11,4 +11,4 @@ if __name__ == '__main__':
     #x = [1,2,3,4,5,6]
     q = [0.2,0.1,0.4,0.1,0.1,0.1]
 
-    print(combo.combinations_with_repeats(5,3))
+    print(rn.check_range_correct(x))

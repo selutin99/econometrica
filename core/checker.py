@@ -57,3 +57,13 @@ def check_probability(list):
             return True
         else:
             raise ValueError('Probability must be equal to 1')
+
+def check_boolean(val):
+    """
+    Check what val is boolean value
+    :param val: boolean or int value
+    """
+    if type(val) is int or type(val) is bool:
+        return True
+    else:
+        raise ValueError('Value is must be boolean or int')
