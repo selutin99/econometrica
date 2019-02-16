@@ -48,3 +48,4 @@ def kurtosis(data):
     """
     if (ch.check_list(data) == True):
         return (moment(data, degree=4)/vars.standard_deviation(data)**4)-3
+

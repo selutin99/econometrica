@@ -11,4 +11,4 @@ if __name__ == '__main__':
     #x = [1,2,3,4,5,6]
     q = [0.2,0.1,0.4,0.1,0.1,0.1]
 
-    print(rn.check_range_correct(x))
+    print(regr.sost_dispersion(x, y))

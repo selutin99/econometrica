@@ -118,3 +118,74 @@ def durbin_watson(x, y):
                     e_ei.append((e[i]-e[i-1])**2)
                 i += 1
             return sum(e_ei)/sum(e_2)
+
+def total_amount(x,y, p=2):
+    """
+    Find value total amount
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :param p: number of factors
+    :return: value of total amount
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            x2 = []
+            y2 = []
+            xavg = avg.average(x)
+            yavg = avg.average(y)
+
+            xyavg = (xavg+yavg)/2
+            for xi, yi in zip(x, y):
+                x2.append(xi*xi)
+                y2.append(yi*yi)
+            return sum(x2)+sum(y2)-len(x)*p*(xyavg*xyavg)
+
+def sf(x, y, p=2):
+    """
+    Find value sum for factor dispersion
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :param p: number of factors
+    :return: value of sum for factor dispersion
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            xavg = avg.average(x)
+            yavg = avg.average(y)
+            xyavg = (xavg + yavg) / 2
+            return len(x)*(xavg**2+yavg**2-p*(xyavg**2))
+
+def sost(x, y):
+    """
+    Find value remains
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value of remains
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            return total_amount(x,y)-sf(x,y)
+
+def factor_dispersion(x, y, p=2):
+    """
+    Find value of factor dispersion
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :param p: number of factors
+    :return: value of factor dispersion
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            return sf(x, y)/(p-1)
+
+def sost_dispersion(x, y, p=2):
+    """
+    Find value of ost dispersion
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :param p: number of factors
+    :return: value of ost dispersion
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if (ch.check_equality(x, y) == True):
+            return sost(x,y)/(p*(len(x)-1))
