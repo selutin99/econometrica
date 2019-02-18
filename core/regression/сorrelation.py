@@ -125,3 +125,37 @@ def fisher_criteria(x, y, m):
              numerator = determination_coefficient(x,y) * (len(x)-m-1)
              denumerator = (1-determination_coefficient(x,y))*m
              return numerator/denumerator
+
+def fehner_coefficient(x, y):
+    """
+    Value of fehner coefficient
+    :param x: list of dependent variable
+    :param y: list of independent variable
+    :return: value of fehner coefficient
+    """
+    if (ch.check_list(x) == True and ch.check_list(y) == True):
+        if(ch.check_equality(x, y) == True):
+            xa = avg.average(x)
+            ya = avg.average(y)
+
+            xlist = []
+            ylist = []
+            resulter = []
+
+            for xi in x:
+                if xi <= xa:
+                    xlist.append("-")
+                else:
+                    xlist.append("+")
+            for yi in y:
+                if yi <= ya:
+                    ylist.append("-")
+                else:
+                    ylist.append("+")
+
+            for xi, yi in zip(xlist, ylist):
+                if xi==yi:
+                    resulter.append("A")
+                else:
+                    resulter.append("B")
+            return (resulter.count("A")-resulter.count("B"))/(resulter.count("A")+resulter.count("B"))
