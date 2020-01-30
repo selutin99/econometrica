@@ -1,5 +1,6 @@
 import core.checker as ch
 
+
 def range_sort(data, order=False):
     """
     Sort list of data by ascending and range by ascending
@@ -12,12 +13,14 @@ def range_sort(data, order=False):
         dict = {}
         j = 1
         for i in data:
-            dict.update({j:i})
+            dict.update({j: i})
             j += 1
         return dict
 
+
 def rank_simple(data):
     return sorted(range(len(data)), key=data.__getitem__)
+
 
 def rank_data(data):
     """
@@ -30,19 +33,20 @@ def rank_data(data):
     svec = [data[rank] for rank in ivec]
     sum_ranks = 0
     dup_count = 0
-    new_array = [0]*n
+    new_array = [0] * n
     for i in range(n):
         sum_ranks += i
         dup_count += 1
-        if i == n-1 or svec[i] != svec[i+1]:
+        if i == n - 1 or svec[i] != svec[i + 1]:
             averank = sum_ranks / float(dup_count) + 1
-            for j in range(i-dup_count+1, i+1):
+            for j in range(i - dup_count + 1, i + 1):
                 new_array[ivec[j]] = averank
             sum_ranks = 0
             dup_count = 0
     return new_array
 
+
 def check_range_correct(data):
     if ch.check_list(data):
-        s = (len(data)*(1+len(data)))/2
-        return sum(rank_data(data))==s
+        s = (len(data) * (1 + len(data))) / 2
+        return sum(rank_data(data)) == s

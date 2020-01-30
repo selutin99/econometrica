@@ -1,8 +1,9 @@
-import core.checker as ch
+import numpy as np
+
 import core.average_params as avg
+import core.checker as ch
 import core.variations.variations_indicators as vars
 
-import numpy as np
 
 def moment(data, degree):
     """
@@ -10,12 +11,13 @@ def moment(data, degree):
     :param data: list of int or float values
     :return: value of central moment
     """
-    if (ch.check_list(data) == True and ch.check_number(degree) == True):
+    if ch.check_list(data) and ch.check_number(degree):
         mean = avg.average(data)
         M = 0
         for element in data:
-            M+=(element-mean)**degree
-        return M/len(data)
+            M += (element - mean) ** degree
+        return M / len(data)
+
 
 def asymmetry_coefficient(data):
     """
@@ -24,7 +26,8 @@ def asymmetry_coefficient(data):
     :return: value of asymmetry coefficient
     """
     if (ch.check_list(data) == True):
-        return moment(data, degree=3)/(vars.standard_deviation(data)**3)
+        return moment(data, degree=3) / (vars.standard_deviation(data) ** 3)
+
 
 def asymmetry_estimation(data):
     """
@@ -32,13 +35,14 @@ def asymmetry_estimation(data):
     :param data: list of int or float values
     :return: value of assymetry estimation
     """
-    if (ch.check_list(data) == True):
+    if ch.check_list(data):
         n = len(data)
 
-        numerator = 6*(n-2)
-        denominator = (n+1)*(n+3)
+        numerator = 6 * (n - 2)
+        denominator = (n + 1) * (n + 3)
 
-        return np.sqrt(numerator/denominator)
+        return np.sqrt(numerator / denominator)
+
 
 def kurtosis(data):
     """
@@ -46,6 +50,5 @@ def kurtosis(data):
     :param data: list of int or float values
     :return: value of kurtosis
     """
-    if (ch.check_list(data) == True):
-        return (moment(data, degree=4)/vars.standard_deviation(data)**4)-3
-
+    if ch.check_list(data):
+        return (moment(data, degree=4) / vars.standard_deviation(data) ** 4) - 3

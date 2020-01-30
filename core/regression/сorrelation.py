@@ -1,10 +1,10 @@
-import core.checker as ch
-import core.average_params as avg
+import numpy as np
 
+import core.average_params as avg
+import core.checker as ch
 import core.regression.pair_regression as regression
 import core.variations.variations_indicators as vars
 
-import numpy as np
 
 def pearson_correltaion(x, y):
     """Finds the Pearson correlation coefficient.
@@ -12,8 +12,8 @@ def pearson_correltaion(x, y):
     :param y: list of independent variable
     :return: value with value of correlation coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x,y) == True):
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
             avg_x = avg.average(x)
             avg_y = avg.average(y)
             diffprod = 0
@@ -26,6 +26,7 @@ def pearson_correltaion(x, y):
                 xdiff2 += xdiff * xdiff
                 ydiff2 += ydiff * ydiff
             return diffprod / np.sqrt(xdiff2 * ydiff2)
+
 
 def cheddock_scale(value):
     """
@@ -46,6 +47,7 @@ def cheddock_scale(value):
             return "Very high correlation"
         return "Is it probability?"
 
+
 def tail_coefficient(x, y):
     """
     Find tail mismatch coefficient
@@ -53,15 +55,16 @@ def tail_coefficient(x, y):
     :param y: list of independent variable
     :return: value of tail mismatch coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x,y) == True):
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
             numerator = 0
             denumerator = 0
             yxl = regression.yx(x, y)
             for yi, yxl in zip(y, yxl):
-                numerator += (yi-yxl)**2
-                denumerator += yxl**2
-            return numerator/denumerator
+                numerator += (yi - yxl) ** 2
+                denumerator += yxl ** 2
+            return numerator / denumerator
+
 
 def beta_coefficient(x, y):
     """
@@ -70,9 +73,10 @@ def beta_coefficient(x, y):
     :param y: list of independent variable
     :return: value of beta coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x, y) == True):
-            return regression.pair_regression(x, y)['b'] * (vars.sample_deviation(x)/vars.sample_deviation(y))
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
+            return regression.pair_regression(x, y)['b'] * (vars.sample_deviation(x) / vars.sample_deviation(y))
+
 
 def determination_coefficient(x, y):
     """
@@ -81,9 +85,10 @@ def determination_coefficient(x, y):
     :param y: list of independent variable
     :return: value of determination coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if (ch.check_equality(x, y) == True):
-            return beta_coefficient(x, y)**2
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
+            return beta_coefficient(x, y) ** 2
+
 
 def significance(x, y):
     """
@@ -92,14 +97,15 @@ def significance(x, y):
     :param y: list of independent variable
     :return: value of significance of correlation coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x, y) == True):
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
             b = beta_coefficient(x, y)
             n = len(x)
-            numerator = b*np.sqrt(n-2)
-            denumerator = np.sqrt(1-b*b)
+            numerator = b * np.sqrt(n - 2)
+            denumerator = np.sqrt(1 - b * b)
 
-            return numerator/denumerator
+            return numerator / denumerator
+
 
 def elastic_coefficient(x, y):
     """
@@ -108,9 +114,10 @@ def elastic_coefficient(x, y):
     :param y: list of independent variable
     :return: value of elastic coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x, y) == True):
-            return regression.pair_regression(x, y)['b']*(avg.average(x)/avg.average(y))
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
+            return regression.pair_regression(x, y)['b'] * (avg.average(x) / avg.average(y))
+
 
 def fisher_criteria(x, y, m):
     """
@@ -120,11 +127,12 @@ def fisher_criteria(x, y, m):
     :param m: the number of influencing factors in the trend model
     :return: value of fisher criteria
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if (ch.check_equality(x, y) == True and ch.check_number(m) == True):
-             numerator = determination_coefficient(x,y) * (len(x)-m-1)
-             denumerator = (1-determination_coefficient(x,y))*m
-             return numerator/denumerator
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y) and ch.check_number(m):
+            numerator = determination_coefficient(x, y) * (len(x) - m - 1)
+            denumerator = (1 - determination_coefficient(x, y)) * m
+            return numerator / denumerator
+
 
 def fehner_coefficient(x, y):
     """
@@ -133,8 +141,8 @@ def fehner_coefficient(x, y):
     :param y: list of independent variable
     :return: value of fehner coefficient
     """
-    if (ch.check_list(x) == True and ch.check_list(y) == True):
-        if(ch.check_equality(x, y) == True):
+    if ch.check_list(x) and ch.check_list(y):
+        if ch.check_equality(x, y):
             xa = avg.average(x)
             ya = avg.average(y)
 
@@ -154,8 +162,8 @@ def fehner_coefficient(x, y):
                     ylist.append("+")
 
             for xi, yi in zip(xlist, ylist):
-                if xi==yi:
+                if xi == yi:
                     resulter.append("A")
                 else:
                     resulter.append("B")
-            return (resulter.count("A")-resulter.count("B"))/(resulter.count("A")+resulter.count("B"))
+            return (resulter.count("A") - resulter.count("B")) / (resulter.count("A") + resulter.count("B"))
